@@ -4,8 +4,7 @@ Extract your .unitypackage
 
 ### Usage without Python
 
-* TODO:
-* Run `python unityPackageExtract.py [XXX.unitypackage]` and it will extract it into the current folder
+* TODO
 
 ### Usage with Python
 
