@@ -3,10 +3,11 @@ import re
 import sys
 import os
 
-def extractPackage(packagePath):
+def extractPackage(packagePath, outputPath=""):
   """
   Extracts a .unitypackage into the current directory
   @param {string} packagePath The path to the .unitypackage
+  @param {string} [outputPath=""] Optional output path, otherwise will use cwd
   """
   with tarfile.open(name=packagePath) as upkg:
     for name in upkg.getnames():
@@ -26,9 +27,10 @@ def extractPackage(packagePath):
       print(f"Extracting '{name}' as '{pathname}'")
       assetFile = upkg.extractfile(f"{name}/asset")
       os.makedirs(os.path.dirname(pathname), exist_ok=True) #Make the dirs up to the given folder
-      open(pathname, "wb").write(assetFile.read())          #Write out to our own named folder
+      assetOutPath = os.path.join(outputPath, pathname)
+      open(assetOutPath, "wb").write(assetFile.read())          #Write out to our own named folder
 
 if __name__ == "__main__":
   if not len(sys.argv) > 1:
     raise TypeError("No .unitypackage path was given. \n\nUSAGE: unitypackage_extractor [XXX.unitypackage]")
-  extractPackage(sys.argv[1])
+  extractPackage(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else "")

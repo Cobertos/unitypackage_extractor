@@ -11,13 +11,13 @@ Extract your .unitypackage
 
 * `pip install unitypackage_extractor`
 
-* From the command line `python -m unitypackage_extractor.extractor [XXX.unitypackage]`
+* From the command line `python -m unitypackage_extractor.extractor [path/to/your/package.unitypackage] (optional/output/path)`
 
 * OR in your Python file:
 ```python
 from unitypackage_extractor.extractor import extractPackage
 
-extractPackage("path/to/your/package")
+extractPackage("path/to/your/package.unitypackage", outputPath="optional/output/path")
 ```
 
 ### Contributing
