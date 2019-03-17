@@ -29,4 +29,6 @@ def extractPackage(packagePath):
       open(pathname, "wb").write(assetFile.read())          #Write out to our own named folder
 
 if __name__ == "__main__":
+  if not len(sys.argv) > 1:
+    raise TypeError("No .unitypackage path was given. \n\nUSAGE: unitypackage_extractor [XXX.unitypackage]")
   extractPackage(sys.argv[1])
