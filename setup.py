@@ -6,7 +6,7 @@ setup(
     description='Extractor for .unitypackage files',
     long_description=open('README.md', 'r').read(),
     long_description_content_type="text/markdown",
-    url='https://github.com/Cobertos/unity-package-extractor/',
+    url='https://github.com/Cobertos/unitypackage_extractor/',
     author='Cobertos',
     author_email='me@cobertos.com',
     license='MIT',
