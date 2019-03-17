@@ -26,8 +26,8 @@ def extractPackage(packagePath, outputPath=""):
       #Extract to the pathname
       print(f"Extracting '{name}' as '{pathname}'")
       assetFile = upkg.extractfile(f"{name}/asset")
-      os.makedirs(os.path.dirname(pathname), exist_ok=True) #Make the dirs up to the given folder
       assetOutPath = os.path.join(outputPath, pathname)
+      os.makedirs(os.path.dirname(assetOutPath), exist_ok=True) #Make the dirs up to the given folder
       open(assetOutPath, "wb").write(assetFile.read())          #Write out to our own named folder
 
 if __name__ == "__main__":
