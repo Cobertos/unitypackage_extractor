@@ -4,7 +4,9 @@ Extract your .unitypackage
 
 ### Usage without Python
 
-* TODO
+* Download the [unitypackage_extractor.zip](https://github.com/Cobertos/unitypackage_extractor/raw/master/unitypackage_extractor.zip)
+* Extract everything into a new directory
+* Run the `extractor.exe` inside with `extractor.exe [path/to/your/package.unitypackage] (optional/output/path)`
 
 ### Usage with Python
 
@@ -20,6 +22,10 @@ extractPackage("path/to/your/package.unitypackage", outputPath="optional/output/
 ```
 
 ### Contributing
+#### Building
+Install `pyinstaller` and run `build_exe.py`. I couldn't get this to work with Python 3.7 so I downloaded and ran it with 3.6 and it worked.
+
+
 #### Releasing
 Refer to [the python docs on packaging for clarification](https://packaging.python.org/tutorials/packaging-projects/).
 Make sure you've updated `setup.py`, and have installed `twine`, `setuptools`, and `wheel`
