@@ -25,6 +25,8 @@ extractPackage("path/to/your/package.unitypackage", outputPath="optional/output/
 #### Building
 Install `pyinstaller` and run `build_exe.py`. I couldn't get this to work with Python 3.7 so I downloaded and ran it with 3.6 and it worked.
 
+#### Testing
+Install `pytest` and run `pytest -v -s` in the root directory.
 
 #### Releasing
 Refer to [the python docs on packaging for clarification](https://packaging.python.org/tutorials/packaging-projects/).
