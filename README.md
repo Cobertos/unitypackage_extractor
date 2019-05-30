@@ -13,7 +13,7 @@ Extract your .unitypackage
 * Extract everything into a new directory
 * Run the `extractor.exe` inside with `extractor.exe [path/to/your/package.unitypackage] (optional/output/path)`
 
-### Usage with Python
+### Usage with Python 3.6+
 
 * `pip install unitypackage_extractor`
 
