@@ -11,7 +11,7 @@ Extract your .unitypackage
 
 ### Usage without Python
 
-* Download the [unitypackage_extractor.zip](https://github.com/Cobertos/unitypackage_extractor/raw/master/unitypackage_extractor.zip)
+* Download the [unitypackage_extractor.zip](https://github.com/Cobertos/unitypackage_extractor/releases/tag/0.3.0) from the Releases tab.
 * Extract everything into a new directory
 * Run the `extractor.exe` inside with `extractor.exe [path/to/your/package.unitypackage] (optional/output/path)`
 
