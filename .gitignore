@@ -10,3 +10,4 @@ __pycache__/
 venv/
 .pytest_cache/
 .cache/
+extractor.spec
