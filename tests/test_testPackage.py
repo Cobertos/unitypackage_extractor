@@ -26,3 +26,20 @@ class TestTestPackageExtract(unittest.TestCase):
             self.assertTrue(os.path.isdir(f"{tmp}/Assets"))
             self.assertTrue(os.path.isfile(f"{tmp}/Assets/test.txt"))
             self.assertEqual(open(f"{tmp}/Assets/test.txt").read(), "testing")
+
+    def test_packageExtractWithLeadingDots(self):
+        '''should be able to extract a unity package that contains ./ in every path in the tar'''
+        #arrange
+        with tempfile.TemporaryDirectory() as tmp:
+            #testLeadingDots.unitypackage - Same as test.unitypackage but archived with `tar -zrf archive.unitypackage .`
+            #to get the specific `./` before every path
+
+            #act
+            print(f"Extracting to {tmp}...")
+            extractPackage("./tests/testLeadingDots.unitypackage", outputPath=tmp)
+
+            #assert
+            self.assertTrue(os.path.isdir(tmp))
+            self.assertTrue(os.path.isdir(f"{tmp}/Assets"))
+            self.assertTrue(os.path.isfile(f"{tmp}/Assets/test.txt"))
+            self.assertEqual(open(f"{tmp}/Assets/test.txt").read(), "testing")

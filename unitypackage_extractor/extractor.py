@@ -11,7 +11,12 @@ def extractPackage(packagePath, outputPath=""):
   """
   with tarfile.open(name=packagePath) as upkg:
     for name in upkg.getnames():
-      if re.search(r"[/\\]", name): #Only the top level files of the tar
+      #.getnames() iterates over every file and folder, providing strings
+      # as directory entries
+
+      #Only top level files (use normpath to remove any leading ./ or other
+      #redundant path stuff
+      if re.search(r"[/\\]", os.path.normpath(name)):
         continue
 
       try:
