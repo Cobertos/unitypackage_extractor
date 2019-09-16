@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='unitypackage_extractor',
-    version='0.4.0',
+    version='0.5.0',
     description='Extractor for .unitypackage files',
     long_description=open('README.md', 'r').read(),
     long_description_content_type="text/markdown",
@@ -14,7 +14,8 @@ setup(
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Topic :: Software Development :: Build Tools',
         'Topic :: System :: Filesystems'
     ],
