@@ -12,7 +12,7 @@ Extract your .unitypackage
 
 ### Usage without Python
 
-* Download the [unitypackage_extractor.zip](https://github.com/Cobertos/unitypackage_extractor/releases/tag/0.3.0) from the Releases tab.
+* Download the [unitypackage_extractor.zip](https://github.com/Cobertos/unitypackage_extractor/releases/tag/0.5.1) from the Releases tab.
 * Extract everything into a new directory
 * Drag and drop your `.unitypackage` onto `extractor.exe` OR
 * Run from the command line with `extractor.exe [path/to/your/package.unitypackage] (optional/output/path)`
@@ -53,3 +53,4 @@ Make sure you've updated `setup.py`, and have installed `twine`, `setuptools`, a
 `python3 setup.py sdist bdist_wheel` - Create a source distribution and a binary wheel distribution into `dist/`
 `twine upload dist/unitypackage_extractor-x.x.x*` - Upload all `dist/` files to PyPI of a given version
 Make sure to tag the commit you released
+Make sure to update the README link tag too!

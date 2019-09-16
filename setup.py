@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='unitypackage_extractor',
-    version='0.5.0',
+    version='0.5.1',
     description='Extractor for .unitypackage files',
     long_description=open('README.md', 'r').read(),
     long_description_content_type="text/markdown",
