@@ -14,7 +14,8 @@ Extract your .unitypackage
 
 * Download the [unitypackage_extractor.zip](https://github.com/Cobertos/unitypackage_extractor/releases/tag/0.3.0) from the Releases tab.
 * Extract everything into a new directory
-* Run the `extractor.exe` inside with `extractor.exe [path/to/your/package.unitypackage] (optional/output/path)`
+* Drag and drop your `.unitypackage` onto `extractor.exe` OR
+* Run from the command line with `extractor.exe [path/to/your/package.unitypackage] (optional/output/path)`
 
 ### Usage with Python 3.6+
 
@@ -30,11 +31,21 @@ extractPackage("path/to/your/package.unitypackage", outputPath="optional/output/
 ```
 
 ### Contributing
-#### Building
-Install `pyinstaller` and run `build_exe.py`. I couldn't get this to work with Python 3.7 so I downloaded and ran it with 3.6 and it worked.
+#### Building (requires pyenv)
+* `pyenv global 3.6.8-amd64`
+ * Originally wasn't able to get this to run on Python 3.7 when it was new, but 3.6 is guarenteed to build the `.exe`
+* `pyenv exec python -m venv venv64`
+* `venv64\scripts\activate.bat` or `venv64/scripts/activate` for Linux
+* `pip install -r requirements-dev.txt` (Installs `pyinstaller` and `pytest`)
+* `python build_exe.py`
+* `venv64\scripts\deactivate.bat` (or you'll use the wrong python when you make another `venv`)
+* Do the same with `pyenv and 3.6.8` and make a folder called `venv32` instead
 
 #### Testing
-Install `pytest` and run `pytest -v -s` in the root directory.
+* `python -m venv venv`
+* `venv\scripts\activate.bat` or `venv/scripts/activate` for Linux
+* `pip install -r requirements-dev.txt` (Installs `pyinstaller` and `pytest`)
+* `pytest -v -s` in the root directory
 
 #### Releasing
 Refer to [the python docs on packaging for clarification](https://packaging.python.org/tutorials/packaging-projects/).
