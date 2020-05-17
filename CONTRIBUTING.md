@@ -3,21 +3,24 @@
 Here's how to run all the development stuff.
 
 ## Setup Development Environment
-* `pyenv global 3.6.8-amd64`
+* `pyenv global 3.7.6-amd64`
 * `pipenv install --dev`
 
 ## Building
 
-Building is a little convoluted because we build a x64 and an x86 binary...
+Building is a little convoluted because we build a x64 and an x86 binary, because we don't have it in the Pipfile because it didn't play nicely with CI the last time I tried, and `pipenv` doesn't play nicely with bitness.
 
-* `pyenv global 3.6.8-amd64`
- * Originally wasn't able to get this to run on Python 3.7 when it was new, but 3.6 is guarenteed to build the `.exe`
-* `pyenv exec python -m venv venv64`
-* `venv64\scripts\activate.bat` or `venv64/scripts/activate` for Linux
-* `pip install -r requirements-dev.txt` (Installs `pyinstaller` and `pytest`)
+If this project accumulates and Pipfile dependencies that `pyinstaller` needs to know about, we either have to stop using `pipenv` or find a new way to manage this...
+
+EDIT: `pipenv` is apparently dead? No new releases? So... don't use it to build with for now...
+
+* `pyenv global 3.7.6-amd64`
+* `pipenv run pip freeze > tmp-requirements.txt`
+* `pip install -r tmp-requirements.txt`
+* `pip install pyinstaller`
+ * pyinstaller is a slower dependency so might not work with the latest Python
 * `python build_exe.py`
-* `venv64\scripts\deactivate.bat` (or you'll use the wrong python when you make another `venv`)
-* Do the same with `pyenv and 3.6.8` and make a folder called `venv32` instead
+* Do the same with `pyenv global 3.7.6` (without `-amd64` suffix) to build the x86 .exe
 
 ## Testing
 * `pipenv run pytest -v` in the root directory

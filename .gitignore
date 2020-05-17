@@ -13,3 +13,4 @@ venv64/
 .pytest_cache/
 .cache/
 extractor.spec
+tmp-requirements.txt
