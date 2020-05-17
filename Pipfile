@@ -1,0 +1,12 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pytest = "*"
+twine = "*"
+setuptools = "*"
+wheel = "*"
+# Don't put pyinstaller in here bc it has trouble in CI
+# PyInstaller = "*"
