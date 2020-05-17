@@ -21,14 +21,14 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pipenv
-          pipenv install --deploy
-        # Install manually to avoid all other dev deps, use --deploy
-        # to fail if the lockfile doesn't match
-      - name: Test with pytest
-        run: |
-          pipenv install pytest
-          pipenv run pytest -v
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pipenv
+        pipenv install --deploy
+      # Install manually to avoid all other dev deps, use --deploy
+      # to fail if the lockfile doesn't match
+    - name: Test with pytest
+      run: |
+        pipenv install pytest
+        pipenv run pytest -v
