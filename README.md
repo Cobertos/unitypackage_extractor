@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://travis-ci.org/Cobertos/unitypackage_extractor" target="_blank"><img alt="build status" src="https://travis-ci.org/Cobertos/unitypackage_extractor.svg?branch=master"></a>
+    <a href="https://github.com/Cobertos/unitypackage_extractor/actions" target="_blank"><img alt="build status" src="https://github.com/Cobertos/unitypackage_extractor/workflows/Package%20Tests/badge.svg"></a>
     <a href="https://pypi.org/project/unitypackage_extractor/" target="_blank"><img alt="pypi python versions" src="https://img.shields.io/pypi/pyversions/unitypackage_extractor.svg"></a>
     <a href="https://twitter.com/cobertos" target="_blank"><img alt="twitter" src="https://img.shields.io/badge/twitter-%40cobertos-0084b4.svg"></a>
     <a href="https://cobertos.com" target="_blank"><img alt="twitter" src="https://img.shields.io/badge/website-cobertos.com-888888.svg"></a>
