@@ -5,7 +5,7 @@ import os
 import time
 import shutil
 
-def extractPackage(packagePath, outputPath=""):
+def extractPackage(packagePath, outputPath="", encoding='utf-8'):
   """
   Extracts a .unitypackage into the current directory
   @param {string} packagePath The path to the .unitypackage
@@ -13,7 +13,7 @@ def extractPackage(packagePath, outputPath=""):
   """
   with tempfile.TemporaryDirectory() as tmpDir:
     # Unpack the whole thing in one go (faster than traversing the tar)
-    with tarfile.open(name=packagePath) as upkg:
+    with tarfile.open(name=packagePath, encoding=encoding) as upkg:
       upkg.extractall(tmpDir)
 
     # Extract each file in tmpDir to final destination
@@ -25,7 +25,7 @@ def extractPackage(packagePath, outputPath=""):
 
       # Has the required info to extract
       # Get the path to output to from /pathname
-      with open(f"{assetEntryDir}/pathname") as f:
+      with open(f"{assetEntryDir}/pathname", encoding=encoding) as f:
         pathname = f.readline()
         pathname = pathname[:-1] if pathname[-1] == '\n' else pathname #Remove newline
 
