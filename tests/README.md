@@ -14,7 +14,7 @@ Expected output of package:
 
 * `Assets/test.txt` - contents "testing"
 
-### `testLeadingDots.unitypackage`
+### `testo.unitypackage`
 
 This one has unicode in one of the path names
 
