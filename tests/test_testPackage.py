@@ -43,3 +43,20 @@ class TestTestPackageExtract(unittest.TestCase):
             self.assertTrue(os.path.isdir(f"{tmp}/Assets"))
             self.assertTrue(os.path.isfile(f"{tmp}/Assets/test.txt"))
             self.assertEqual(open(f"{tmp}/Assets/test.txt").read(), "testing")
+
+    def test_packageExtractWithUnicodePath(self):
+        '''should be able to extract a unity package that has a unicode pathname'''
+        #arrange
+        with tempfile.TemporaryDirectory() as tmp:
+            # testo.unitypackage - Should just contain one file at Assets/テスト.txt with
+            # contents 'testing, but with katakana!'
+
+            #act
+            print(f"Extracting to {tmp}...")
+            extractPackage("./tests/testo.unitypackage", outputPath=tmp)
+
+            #assert
+            self.assertTrue(os.path.isdir(tmp))
+            self.assertTrue(os.path.isdir(f"{tmp}/Assets"))
+            self.assertTrue(os.path.isfile(f"{tmp}/Assets/テスト.txt"))
+            self.assertEqual(open(f"{tmp}/Assets/テスト.txt").read(), "テスト, but with katakana!")
