@@ -1,0 +1,24 @@
+
+[BASIC]
+variable-naming-style=any
+function-naming-style=any
+argument-naming-style=any
+attr-naming-style=any
+method-naming-style=any
+
+[LOGGING]
+logging-format-style=new
+
+[STRING]
+
+# This flag controls whether inconsistent-quotes generates a warning when the
+# character used as a quote delimiter is used inconsistently within a module.
+check-quote-consistency=no
+
+# This flag controls whether the implicit-str-concat should generate a warning
+# on implicit string concatenation in sequences defined over several lines.
+check-str-concat-over-line-jumps=no
+
+
+[FORMAT]
+indent-string='  '

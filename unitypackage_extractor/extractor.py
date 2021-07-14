@@ -36,6 +36,9 @@ def extractPackage(packagePath, outputPath="", encoding='utf-8'):
       shutil.move(f"{assetEntryDir}/asset", assetOutPath)
 
 def cli(args):
+  """
+  CLI entrypoint, takes CLI arguments array
+  """
   if not args:
     raise TypeError("No .unitypackage path was given. \n\nUSAGE: unitypackage_extractor [XXX.unitypackage]")
   startTime = time.time()
