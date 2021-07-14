@@ -1,4 +1,4 @@
-import tarfile
+import tarsafe
 import tempfile
 import sys
 import os
@@ -14,7 +14,7 @@ def extractPackage(packagePath, outputPath="", encoding='utf-8'):
   """
   with tempfile.TemporaryDirectory() as tmpDir:
     # Unpack the whole thing in one go (faster than traversing the tar)
-    with tarfile.open(name=packagePath, encoding=encoding) as upkg:
+    with tarsafe.open(name=packagePath, encoding=encoding) as upkg:
       upkg.extractall(tmpDir)
 
     # Extract each file in tmpDir to final destination

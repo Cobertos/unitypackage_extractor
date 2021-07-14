@@ -10,3 +10,6 @@ setuptools = "*"
 wheel = "*"
 # Don't put pyinstaller in here bc it has trouble in CI
 # PyInstaller = "*"
+
+[packages]
+unitypackage_extractor = {editable = true, path = "."}

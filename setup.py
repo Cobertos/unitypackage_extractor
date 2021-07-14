@@ -20,6 +20,9 @@ setup(
         'Topic :: Software Development :: Build Tools',
         'Topic :: System :: Filesystems'
     ],
+    install_requires=[
+        'tarsafe>=0.0.2',
+    ],
     keywords='untiy unity3d unitypackage extract tar extractor',
     packages=['unitypackage_extractor']
 )
