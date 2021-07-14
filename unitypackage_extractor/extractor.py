@@ -4,6 +4,7 @@ import sys
 import os
 import time
 import shutil
+from pathlib import Path
 
 def extractPackage(packagePath, outputPath="", encoding='utf-8'):
   """
@@ -29,9 +30,14 @@ def extractPackage(packagePath, outputPath="", encoding='utf-8'):
         pathname = f.readline()
         pathname = pathname[:-1] if pathname[-1] == '\n' else pathname #Remove newline
 
+      # Figure out final path, make sure that it's inside the write directory
+      assetOutPath = os.path.join(outputPath, pathname)
+      if Path(outputPath) not in Path(assetOutPath).resolve().parents:
+        print(f"WARNING: Skipping '{dirEntry.name}' as '{assetOutPath}' is outside of '{outputPath}'.")
+        continue
+
       #Extract to the pathname
       print(f"Extracting '{dirEntry.name}' as '{pathname}'")
-      assetOutPath = os.path.join(outputPath, pathname)
       os.makedirs(os.path.dirname(assetOutPath), exist_ok=True) #Make the dirs up to the given folder
       shutil.move(f"{assetEntryDir}/asset", assetOutPath)
 
