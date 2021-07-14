@@ -12,6 +12,8 @@ def extractPackage(packagePath, outputPath="", encoding='utf-8'):
   @param {string} packagePath The path to the .unitypackage
   @param {string} [outputPath=""] Optional output path, otherwise will use cwd
   """
+  absOutputPath = Path(os.path.abspath(outputPath))
+
   with tempfile.TemporaryDirectory() as tmpDir:
     # Unpack the whole thing in one go (faster than traversing the tar)
     with tarsafe.open(name=packagePath, encoding=encoding) as upkg:
@@ -31,8 +33,8 @@ def extractPackage(packagePath, outputPath="", encoding='utf-8'):
         pathname = pathname[:-1] if pathname[-1] == '\n' else pathname #Remove newline
 
       # Figure out final path, make sure that it's inside the write directory
-      assetOutPath = os.path.join(outputPath, pathname)
-      if Path(outputPath) not in Path(assetOutPath).resolve().parents:
+      assetOutPath = Path(os.path.abspath(os.path.join(absOutputPath, pathname)))
+      if absOutputPath not in assetOutPath.parents:
         print(f"WARNING: Skipping '{dirEntry.name}' as '{assetOutPath}' is outside of '{outputPath}'.")
         continue
 
