@@ -32,8 +32,9 @@ No expected output, but contains:
 
 ### `testEscape2.unitypackage`
 
-This one has an absolute path, which should cause a failure
+This one has an absolute path, which should cause a failure. `/tmp` because it's
+globally writable on most systems.
 
 No expected output, but contains:
 
-* `/var/log/escape.txt`
+* `/tmp/escape.txt`

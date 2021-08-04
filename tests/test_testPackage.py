@@ -93,5 +93,5 @@ class TestTestPackageExtract(unittest.TestCase):
 
       #assert
       self.assertTrue(os.path.isdir(tmp))
-      self.assertTrue(not os.path.isfile(f"/var/log/escape.txt"))
+      self.assertTrue(not os.path.isfile(f"/tmp/escape.txt"))
       self.assertTrue(re.search(r"outside", stdout.getvalue(), flags=re.IGNORECASE))
