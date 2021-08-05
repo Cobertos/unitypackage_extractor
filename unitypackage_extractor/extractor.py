@@ -32,7 +32,7 @@ def extractPackage(packagePath, outputPath="", encoding='utf-8'):
 
       # Figure out final path, make sure that it's inside the write directory
       assetOutPath = os.path.join(outputPath, pathname)
-      if Path(outputPath) not in Path(assetOutPath).resolve().parents:
+      if Path(outputPath).resolve() not in Path(assetOutPath).resolve().parents:
         print(f"WARNING: Skipping '{dirEntry.name}' as '{assetOutPath}' is outside of '{outputPath}'.")
         continue
 
