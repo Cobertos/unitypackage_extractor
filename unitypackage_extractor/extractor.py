@@ -46,7 +46,7 @@ def cli(args):
   CLI entrypoint, takes CLI arguments array
   """
   if not args:
-    raise TypeError("No .unitypackage path was given. \n\nUSAGE: unitypackage_extractor [XXX.unitypackage]")
+    raise TypeError("No .unitypackage path was given. \n\nUSAGE: unitypackage_extractor [XXX.unitypackage] (optional/output/path)")
   startTime = time.time()
   extractPackage(args[0], args[1] if len(args) > 1 else "")
   print("--- Finished in %s seconds ---" % (time.time() - startTime))
