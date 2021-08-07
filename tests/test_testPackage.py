@@ -29,18 +29,26 @@ def test_packageExtractRelative():
   '''should be able to extract to a relative path'''
   #arrange
   with tempfile.TemporaryDirectory() as tmp:
-    #test.unitypackage - Should contain one file named test.txt with the contents "testing"
-    relTmp = os.path.relpath(tmp, start=".")
+    with tempfile.TemporaryDirectory() as tmp2:
+      #test.unitypackage - Should contain one file named test.txt with the contents "testing"
+      extractPath = os.path.abspath("./tests/test.unitypackage")
 
-    #act
-    print(f"Extracting to {tmp} as {relTmp}...")
-    extractPackage("./tests/test.unitypackage", outputPath=os.path.relpath(relTmp))
+      # change directory due to Windows failing when relative paths are on different
+      # drives (so use _two_ temp folders)
+      oldDir = os.path.abspath('.')
+      relTmp = os.path.relpath(tmp, start=tmp2)
+      os.chdir(tmp2)
 
-    #assert
-    assert os.path.isdir(tmp)
-    assert os.path.isdir(f"{tmp}/Assets")
-    assert os.path.isfile(f"{tmp}/Assets/test.txt")
-    assert open(f"{tmp}/Assets/test.txt").read() == "testing"
+      #act
+      print(f"Extracting to {tmp} as {relTmp}...")
+      extractPackage(extractPath, outputPath=relTmp)
+      os.chdir(oldDir)
+
+      #assert
+      assert os.path.isdir(tmp)
+      assert os.path.isdir(f"{tmp}/Assets")
+      assert os.path.isfile(f"{tmp}/Assets/test.txt")
+      assert open(f"{tmp}/Assets/test.txt").read() == "testing"
 
 def test_packageExtractWithLeadingDots():
   '''should be able to extract a unity package that contains ./ in every path in the tar'''
