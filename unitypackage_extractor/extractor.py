@@ -33,6 +33,8 @@ def extractPackage(packagePath, outputPath="", encoding='utf-8'):
         pathname = pathname[:-1] if pathname[-1] == '\n' else pathname #Remove newline
 
       # Figure out final path, make sure that it's inside the write directory
+      # (Use os.path.abspath to get the absolute path of a non-existent directory in a way that doesn't
+      # break WindowsPath, which seems to omit such non-existent directories when .resolve()ing)
       assetOutPath = Path(os.path.abspath(os.path.join(absOutputPath, pathname)))
       if absOutputPath not in assetOutPath.parents:
         print(f"WARNING: Skipping '{dirEntry.name}' as '{assetOutPath}' is outside of '{outputPath}'.")
@@ -48,7 +50,7 @@ def cli(args):
   CLI entrypoint, takes CLI arguments array
   """
   if not args:
-    raise TypeError("No .unitypackage path was given. \n\nUSAGE: unitypackage_extractor [XXX.unitypackage]")
+    raise TypeError("No .unitypackage path was given. \n\nUSAGE: unitypackage_extractor [XXX.unitypackage] (optional/output/path)")
   startTime = time.time()
   extractPackage(args[0], args[1] if len(args) > 1 else "")
   print("--- Finished in %s seconds ---" % (time.time() - startTime))
