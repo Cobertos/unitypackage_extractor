@@ -1,9 +1,10 @@
-import tarfile
+import tarsafe
 import tempfile
 import sys
 import os
 import time
 import shutil
+from pathlib import Path
 
 def extractPackage(packagePath, outputPath="", encoding='utf-8'):
   """
@@ -13,7 +14,7 @@ def extractPackage(packagePath, outputPath="", encoding='utf-8'):
   """
   with tempfile.TemporaryDirectory() as tmpDir:
     # Unpack the whole thing in one go (faster than traversing the tar)
-    with tarfile.open(name=packagePath, encoding=encoding) as upkg:
+    with tarsafe.open(name=packagePath, encoding=encoding) as upkg:
       upkg.extractall(tmpDir)
 
     # Extract each file in tmpDir to final destination
@@ -29,9 +30,14 @@ def extractPackage(packagePath, outputPath="", encoding='utf-8'):
         pathname = f.readline()
         pathname = pathname[:-1] if pathname[-1] == '\n' else pathname #Remove newline
 
+      # Figure out final path, make sure that it's inside the write directory
+      assetOutPath = os.path.join(outputPath, pathname)
+      if Path(outputPath).resolve() not in Path(assetOutPath).resolve().parents:
+        print(f"WARNING: Skipping '{dirEntry.name}' as '{assetOutPath}' is outside of '{outputPath}'.")
+        continue
+
       #Extract to the pathname
       print(f"Extracting '{dirEntry.name}' as '{pathname}'")
-      assetOutPath = os.path.join(outputPath, pathname)
       os.makedirs(os.path.dirname(assetOutPath), exist_ok=True) #Make the dirs up to the given folder
       shutil.move(f"{assetEntryDir}/asset", assetOutPath)
 
@@ -40,7 +46,7 @@ def cli(args):
   CLI entrypoint, takes CLI arguments array
   """
   if not args:
-    raise TypeError("No .unitypackage path was given. \n\nUSAGE: unitypackage_extractor [XXX.unitypackage]")
+    raise TypeError("No .unitypackage path was given. \n\nUSAGE: unitypackage_extractor [XXX.unitypackage] (optional/output/path)")
   startTime = time.time()
   extractPackage(args[0], args[1] if len(args) > 1 else "")
   print("--- Finished in %s seconds ---" % (time.time() - startTime))
