@@ -1,0 +1,36 @@
+name: Executable Build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    strategy:
+      max-parallel: 4
+      architecture: [x86, x64]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+          architecture: ${{ matrix.architecture }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pipenv
+          pipenv install --dev
+      - name: Build executable
+        run: |
+          pipenv install pyinstaller
+          python build_exe.py
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: windows-build
+          path: build/extractor/**/*
