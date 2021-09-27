@@ -33,5 +33,5 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: windows-build
+          name: windows-build-${{ matrix.architecture }}
           path: build/extractor/**/*
