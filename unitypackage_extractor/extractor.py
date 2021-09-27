@@ -37,7 +37,7 @@ def extractPackage(packagePath, outputPath="", encoding='utf-8'):
         print(f"WARNING: Skipping '{dirEntry.name}' as '{assetOutPath}' is outside of '{outputPath}'.")
         continue
       if os.name == 'nt':
-        assetOutPath = re.sub('[\\>\\:\\"\\\\\\/\\|\\?\\*]', '_', assetOutPath)
+        assetOutPath = re.sub('[\\>\\:\\"\\\\\\|\\?\\*]', '_', assetOutPath) # Replace windows reserved chars with '_' that arent '/'
 
       #Extract to the pathname
       print(f"Extracting '{dirEntry.name}' as '{pathname}'")
