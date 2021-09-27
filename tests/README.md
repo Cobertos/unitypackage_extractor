@@ -38,3 +38,11 @@ globally writable on most systems.
 No expected output, but contains:
 
 * `/tmp/escape.txt`
+
+### `testBadWinChars.unitypackage`
+
+This one has a filename with characters Windows will dislike. The filename is `*:?gotem.txt`
+
+Expected output of package:
+
+* `Assets/___gotem.txt` on Windows, `Assets/*:?gotem.txt` on Linux - contents "testing"

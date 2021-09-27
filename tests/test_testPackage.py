@@ -119,3 +119,21 @@ def test_packageExtractEscape2(capsys):
     assert os.path.isdir(tmp)
     assert not os.path.isfile(f"/tmp/escape.txt")
     assert re.search(r"outside", out, flags=re.IGNORECASE)
+
+def test_packageExtractBadWindowsCharacters():
+  '''should be able to extract a package even if theres reserved Windows characters'''
+  #arrange
+  with tempfile.TemporaryDirectory() as tmp:
+    #testBadWinChars.unitypackage - One file named "*:?gotem.txt", contents "testing"
+
+    #act
+    print(f"Extracting to {tmp}...")
+    extractPackage("./tests/testBadWinChars.unitypackage", outputPath=tmp)
+
+    #assert
+    assert os.path.isdir(tmp)
+    assert os.path.isdir(f"{tmp}/Assets")
+    correctName = '___gotem.txt' if os.name == 'nt' else '*:?gotem.txt'
+    assert os.path.isfile(f"{tmp}/Assets/{correctName}")
+    assert open(f"{tmp}/Assets/{correctName}").read() == "testing"
+

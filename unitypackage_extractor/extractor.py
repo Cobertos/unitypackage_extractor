@@ -4,6 +4,7 @@ import sys
 import os
 import time
 import shutil
+import re
 from pathlib import Path
 
 def extractPackage(packagePath, outputPath="", encoding='utf-8'):
@@ -35,6 +36,8 @@ def extractPackage(packagePath, outputPath="", encoding='utf-8'):
       if Path(outputPath).resolve() not in Path(assetOutPath).resolve().parents:
         print(f"WARNING: Skipping '{dirEntry.name}' as '{assetOutPath}' is outside of '{outputPath}'.")
         continue
+      if os.name == 'nt':
+        assetOutPath = re.sub('[\\>\\:\\"\\\\\\/\\|\\?\\*]', '_', assetOutPath)
 
       #Extract to the pathname
       print(f"Extracting '{dirEntry.name}' as '{pathname}'")
