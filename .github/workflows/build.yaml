@@ -29,7 +29,7 @@ jobs:
       - name: Build executable
         run: |
           pipenv install pyinstaller
-          python build_exe.py
+          pipenv run python build_exe.py
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
