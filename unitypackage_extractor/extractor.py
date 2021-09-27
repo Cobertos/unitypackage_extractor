@@ -30,14 +30,15 @@ def extractPackage(packagePath, outputPath="", encoding='utf-8'):
       with open(f"{assetEntryDir}/pathname", encoding=encoding) as f:
         pathname = f.readline()
         pathname = pathname[:-1] if pathname[-1] == '\n' else pathname #Remove newline
+        # Replace windows reserved chars with '_' that arent '/'
+        if os.name == 'nt':
+          pathname = re.sub(r'[\>\:\"\|\?\*]', '_', pathname)
 
       # Figure out final path, make sure that it's inside the write directory
       assetOutPath = os.path.join(outputPath, pathname)
       if Path(outputPath).resolve() not in Path(assetOutPath).resolve().parents:
         print(f"WARNING: Skipping '{dirEntry.name}' as '{assetOutPath}' is outside of '{outputPath}'.")
         continue
-      if os.name == 'nt':
-        assetOutPath = re.sub('[\\>\\:\\"\\\\\\|\\?\\*]', '_', assetOutPath) # Replace windows reserved chars with '_' that arent '/'
 
       #Extract to the pathname
       print(f"Extracting '{dirEntry.name}' as '{pathname}'")
