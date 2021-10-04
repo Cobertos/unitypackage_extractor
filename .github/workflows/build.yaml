@@ -26,10 +26,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install pipenv
           pipenv install --dev
+          pipenv install pyinstaller
       - name: Build executable
         run: |
-          pipenv install pyinstaller
-          pipenv run python build_exe.py
+          pipenv run pyinstaller --onefile unitypackage_extractor/extractor.py
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
