@@ -3,23 +3,20 @@
 Here's how to run all the development stuff.
 
 ## Setup Development Environment
-* `pyenv global 3.7.6-amd64`
+* `pyenv global 3.7.6-amd64` (or whatever the latest is pyinstaller supports, sometimes it's not up to date)
 * `pipenv install --dev`
 
 ## Building
 
-Building is a little convoluted because we build a x64 and an x86 binary, because we don't have it in the Pipfile because it didn't play nicely with CI the last time I tried, and `pipenv` doesn't play nicely with bitness.
+Building is a little convoluted because we build a x64 and an x86 binary.
 
-If this project accumulates and Pipfile dependencies that `pyinstaller` needs to know about, we either have to stop using `pipenv` or find a new way to manage this...
-
-EDIT: `pipenv` is apparently dead? No new releases? So... don't use it to build with for now...
+TODO: not sure if `pyenv global` is still needed. In the past I think it had trouble with local versions of different python bitness
 
 * `pyenv global 3.7.6-amd64`
 * `pipenv run pip freeze > tmp-requirements.txt`
 * `pip install -r tmp-requirements.txt`
 * `pip install pyinstaller`
- * pyinstaller is a slower dependency so might not work with the latest Python
-* `python build_exe.py`
+* `pyinstaller --onefile unitypackage_extractor/extractor.py` (or `python -m PyInstaller`, idk why but `pyinstaller` doesn't work sometimes)
 * Do the same with `pyenv global 3.7.6` (without `-amd64` suffix) to build the x86 .exe
 
 ## Testing
