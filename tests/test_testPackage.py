@@ -137,3 +137,21 @@ def test_packageExtractBadWindowsCharacters():
     assert os.path.isfile(f"{tmp}/Assets/{correctName}")
     assert open(f"{tmp}/Assets/{correctName}").read() == "testing"
 
+def test_packageExtractCWD():
+  '''should be able to extract a simple unity pckage to cwd (no output path)'''
+  #arrange
+  with tempfile.TemporaryDirectory() as tmp:
+    #test.unitypackage - Should contain one file named test.txt with the contents "testing"
+    extractPath = os.path.abspath("./tests/test.unitypackage")
+    oldCwd = os.getcwd()
+    os.chdir(tmp) # Switch to the path we'll extract to
+
+    #act
+    print(f"Extracting to cwd, '{os.getcwd()}'...")
+    extractPackage(extractPath)
+    os.chdir(oldCwd) # Go back to old path
+
+    #assert
+    assert os.path.isdir(f"{tmp}/Assets")
+    assert os.path.isfile(f"{tmp}/Assets/test.txt")
+    assert open(f"{tmp}/Assets/test.txt").read() == "testing"

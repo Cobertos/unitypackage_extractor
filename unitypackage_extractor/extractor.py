@@ -7,12 +7,15 @@ import shutil
 import re
 from pathlib import Path
 
-def extractPackage(packagePath, outputPath="", encoding='utf-8'):
+def extractPackage(packagePath, outputPath=None, encoding='utf-8'):
   """
   Extracts a .unitypackage into the current directory
   @param {string} packagePath The path to the .unitypackage
-  @param {string} [outputPath=""] Optional output path, otherwise will use cwd
+  @param {string} [outputPath=os.getcwd()] Optional output path, otherwise will use cwd
   """
+  if not outputPath:
+    outputPath = os.getcwd() # If not explicitly set, WindowsPath("") has no parents, and causes the escape test to fail
+
   with tempfile.TemporaryDirectory() as tmpDir:
     # Unpack the whole thing in one go (faster than traversing the tar)
     with tarsafe.open(name=packagePath, encoding=encoding) as upkg:
