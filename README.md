@@ -13,7 +13,7 @@ Extract your .unitypackage
 ## Usage without Python
 
 * Download the [unitypackage_extractor.zip](https://github.com/Cobertos/unitypackage_extractor/releases/latest) from the Releases tab.
-* Extract everything into a new directory
+* Extract into a new directory
 * Drag and drop your `.unitypackage` onto `extractor.exe` OR
 * Run from the command line with `extractor.exe [path/to/your/package.unitypackage] (optional/output/path)`
 
