@@ -1,11 +1,14 @@
-import tarsafe
-import tempfile
-import sys
+import logging
 import os
-import time
-import shutil
 import re
+import shutil
+import sys
+import tempfile
+import time
 from pathlib import Path
+
+import tarsafe
+
 
 def extractPackage(packagePath, outputPath=None, encoding='utf-8'):
   """
@@ -44,7 +47,7 @@ def extractPackage(packagePath, outputPath=None, encoding='utf-8'):
         continue
 
       #Extract to the pathname
-      print(f"Extracting '{dirEntry.name}' as '{pathname}'")
+      logging.info(f"Extracting '{dirEntry.name}' as '{pathname}'")
       os.makedirs(os.path.dirname(assetOutPath), exist_ok=True) #Make the dirs up to the given folder
       shutil.move(f"{assetEntryDir}/asset", assetOutPath)
 

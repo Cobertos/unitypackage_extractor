@@ -1,13 +1,13 @@
 '''
 Tests for package extracting
 '''
-import io
-import sys
-import re
 import os
+import re
+import sys
 import tempfile
 
 from unitypackage_extractor.extractor import extractPackage
+
 
 def test_packageExtract():
   '''should be able to extract a simple unity pckage'''
